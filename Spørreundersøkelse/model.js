@@ -1,3 +1,4 @@
+
 //modell for spørreundersøkelse
 var count = 0;
 var contentDiv = document.getElementById('content');
