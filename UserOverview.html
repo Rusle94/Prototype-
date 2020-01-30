@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 
+        uses overview
+    </title>
+
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid gray;
+            border-collapse: collapse;
+
+        }
+
+
+        td,
+        th {
+            padding: 4px;
+
+        }
+
+        th {
+            background-color: darkblue;
+            border: 1px solid gray;
+            color: whitesmoke;
+        }
+
+        tr:nth-child(even) {
+            background-color:gray;
+            color: white;
+
+
+
+        }
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+    <table id="nameLists">
+    </table>
+    <br>
+
+   
+
+    <script>
+        //model
+        let names= [
+
+            { descripton: 'per', isDone: true, AdminUser: '', dateDeadline : '16-12-1948', doneDate:'17-10-1960'},
+            { descripton: 'Tysgrul', isDone: false, AdminUser: '', dateDeadline  : '20-2-1342fk', doneDate:'20-2-0'},
+            { descripton: 'Songly', isDone: false, AdminUser: '', dateDeadline  : '31-10-9241', doneDate:'10-3-1091'},
+
+        ];
+
+
+
+        //view
+        let nameTable = document.getElementById("nameLists")
+        display();
+        function display() {
+            let html = `      
+             <tr>
+            <th>name</th>
+            <th></th>
+            
+            <th>Module</th>
+            <th>when they started</th>
+            <th>when they finished</th>
+            </tr> 
+            `;
+            for (let i = 0; i < names.length; i++) {
+                html += createNameRow(i);
+            }
+
+            nameTable.innerHTML = html;
+        }
+
+        function createNameRow(i) {
+
+            const name = names[i]
+            const ischecked = name.isDone ? 'checked="checked"' : '';
+            if (!name.editMode && !name.editRespMode)
+
+                return `  <tr>
+                    <td>${name.descripton}</td>
+                 
+                <td>
+                    <button onclick="deleteUser(${i})">Remove</button>
+                    <button onclick="editName(${i})">Edit</button>
+                    </td>
+                    <td><input id="editcomments${i}" type="text" ${name.AdminUser}</td>
+                    
+                        </td>
+                        <td>${name.dateDeadline}</td>
+                        <td>${name.doneDate}</td>
+                
+            </tr>
+            `;
+            if (name.editMode)
+                return `<tr>
+                <td><input id="editOn${i}" type="text" value="${name.descripton}"/></td>
+                
+                <td>
+                    <button onclick="updateName(${i})">Save Edits</button>
+                   
+                    </td>
+                    <td>${name.AdminUser}</td>
+                    <td><button disabled onclick="editResponsible(${i})">save</button></td>
+                        <td>${name.datewhenStarted}</td>
+                        <td>${name.dateWhenFinished}</td>
+            </tr>
+            `;
+            if (name.editRespMode)
+                return `<tr>
+                <td>${name.descripton}</td>
+                <td><input onchange="changeDone(this, ${i})" type="checkbox" ${ischecked} /></td> 
+                <td>
+                        <button disabled onclick="deleteUser(${i})">Remove</button>
+                        <button disabled onclick="editName(${i})">Edit</button>
+                   
+                    </td>
+                    <td><input id="editResp${i}" type="text" value="${name.AdminUser}"/></td>
+                    <td><button onclick="updateResponsible(${i})">Save Changes</button></td>
+                        <td>${name.dateDeadline}</td>
+                        <td>${name.doneDate}</td>
+            </tr> `
+
+
+        }
+
+
+
+        //controller 
+        let inputName = document.getElementById("Nameinput");
+        let inputResponsible = document.getElementById("nameinput");
+        let inputDate = document.getElementById("dateinput")
+        let d = new Date() ;
+        
+        
+        console.log(d)
+        
+
+        function addName() {
+            
+        names.push({
+    dateDeadline: inputDate.value,
+    AdminUser: inputResponsible.value,
+     descripton: inputName.value,
+      isDone: false
+        });
+            
+
+            display();
+            inputName.value = '';
+            inputResponsible.value = ''
+        }
+        function changeDone(checkbox, index) {
+            names[index].isDone = checkbox.checked 
+            if(checkbox.checked){
+
+              names[index].doneDate = d.toLocaleDateString("nb-no");
+              
+            }
+            else {
+                names[index].doneDate = '';
+            }
+           
+            display();
+        }
+        function deleteUser(index) {
+        names.splice(index, 1)
+            display();
+        }
+        function editName(index) {
+            names[index].editMode = true;
+
+            display();
+        }
+        function editResponsible(index) {
+            names[index].editRespMode = true;
+
+            display();
+
+        }
+        function updateName(index) {
+            const id = `editOn${index}`;
+            const inputTag = document.getElementById(id);
+           
+            name[index].descripton = inputTag.value;
+            name[index].editMode = false;
+            display();
+        }
+        function updateResponsible(index){
+            const id = `editResp${index}`;
+            const inputTag = document.getElementById(id);
+           
+            names[index].AdminUser = inputTag.value;
+            names[index].editRespMode = false;
+            display();
+
+        }
+    </script>
+</body>
+
+</html>
