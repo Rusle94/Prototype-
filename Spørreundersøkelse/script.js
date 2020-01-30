@@ -7,7 +7,7 @@ function show() {
 		<div class="col-md-6 well">
 		<div>
 			<h4>Question 1/5:</h4>
-			<div id="question">How was your mood today?</div>
+			<div>${model.ratingMap.questions[0]}</div>
 			<br>
 			<fieldset>${ [1,2,3,4,5].map(n=>
 				`<input onclick="clickRating(${n})"  id="1" style="color:${moodRating == n ? 'orange' : 'black'};font-size:40px;cursor:pointer;" class="far fa-${model.ratingOptions[n]}"/>`
