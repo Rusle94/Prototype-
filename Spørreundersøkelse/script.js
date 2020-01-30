@@ -1,16 +1,18 @@
-show();
+let questionStart = 0;
+let questionNextNumber = 0;
 
 function show() {
+
     const disabledOrNot = moodRating === 0 ? 'disabled' : '';
-    contentDiv.innerHTML = ` <br>
+	contentDiv.innerHTML = ` <br>
 		<div class="col-md-3"></div>
 		<div class="col-md-6 well">
 		<div>
-			<h4>Question 1/5:</h4>
-			<div>${model.ratingMap.questions[0]}</div>
+			<h4>${model.ratingMap.questionNumber[questionNextNumber]}:</h4>
+			<div>${model.ratingMap.questions[questionStart]}</div>
 			<br>
 			<fieldset>${ [1,2,3,4,5].map(n=>
-				`<input onclick="clickRating(${n})"  id="1" style="color:${moodRating == n ? 'orange' : 'black'};font-size:40px;cursor:pointer;" class="far fa-${model.ratingOptions[n]}"/>`
+				`<input onclick="clickRating(${n})" style="color:${moodRating == n ? 'orange' : 'black'};font-size:40px;cursor:pointer;" class="far fa-${model.ratingMap.ratingOptions[n]}"/>`
 				).join('')}
 			</fieldset>
 		</div>
@@ -19,7 +21,7 @@ function show() {
 			<h6>Additional comment:</h6>
 			<textarea id="review" class="form-control" style="resize:none; width: 300px; height:100px;"></textarea>
 		</div>
-		<button type="submit" id="nxtBTN" class="btn btn-success" onclick="nextButton()" ${disabledOrNot} >NEXT</button> <br />
+		<button type="submit"  class="btn btn-success" onclick="nextButton(this)" ${disabledOrNot}>${model.ratingMap.questionButton[0]}</button> <br />
 		<div id="result"></div><br> `;
 }
 
@@ -29,21 +31,17 @@ show();
 function clickRating(value) {
 	moodRating = value === moodRating ? 0 : value;
 	show();
-	//lastSelectedIcon.style.color = "black";
-	//show();
-	// if (selectedIcon.style.color == "orange") {
-	// 	orangeOrNot = "black";
-	// 	console.log("i o or n if", orangeOrNot)
-	// 	show();
-	// }
-	// else {
-	// 	orangeOrNot = 'orange';
-	// 	disabledOrNot = "";
-	// 	show();
-	// }
 }
 
+function nextButton(submit) {
 
-function nextButton() {
-	window.location = ("index2.html");
+	questionStart++;
+	questionNextNumber++;
+	show();
+	return;
+	if (questionStart == 5){
+		submit.innerHTML = model.ratingMap.questionButton[1]
+	}
+	
+	
 }
