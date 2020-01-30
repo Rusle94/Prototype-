@@ -2,6 +2,8 @@
 var count = 0;
 var contentDiv = document.getElementById('content');
 let moodRating = 0;
+let questionStart = 0;
+let questionNextNumber = 0;
 
 let model = {
     
