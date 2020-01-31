@@ -58,9 +58,9 @@
         //model
         let names= [
 
-            { descripton: 'per', isDone: true, AdminUser: '', dateDeadline : '16-12-1948', doneDate:'17-10-1960'},
-            { descripton: 'Tysgrul', isDone: false, AdminUser: '', dateDeadline  : '20-2-1342fk', doneDate:'20-2-0'},
-            { descripton: 'Songly', isDone: false, AdminUser: '', dateDeadline  : '31-10-9241', doneDate:'10-3-1091'},
+            { descripton: 'per', isDone: true, AdminUser: '', dateStarted : '16-12-1948', doneDate:'17-10-1960'},
+            { descripton: 'Tysgrul', isDone: false, AdminUser: '', dateStarted  : '20-2-1342fk', doneDate:'20-2-0'},
+            { descripton: 'Songly', isDone: false, AdminUser: '', dateStarted  : '31-10-9241', doneDate:'10-3-1091'},
 
         ];
 
@@ -103,7 +103,7 @@
                     <td><input id="editcomments${i}" type="text" ${name.AdminUser}</td>
                     
                         </td>
-                        <td>${name.dateDeadline}</td>
+                        <td>${name.dateStarted}</td>
                         <td>${name.doneDate}</td>
                 
             </tr>
@@ -133,7 +133,7 @@
                     </td>
                     <td><input id="editResp${i}" type="text" value="${name.AdminUser}"/></td>
                     <td><button onclick="updateResponsible(${i})">Save Changes</button></td>
-                        <td>${name.dateDeadline}</td>
+                        <td>${name.dateStarted}</td>
                         <td>${name.doneDate}</td>
             </tr> `
 
@@ -155,7 +155,7 @@
         function addName() {
             
         names.push({
-    dateDeadline: inputDate.value,
+     dateStarted: inputDate.value,
     AdminUser: inputResponsible.value,
      descripton: inputName.value,
       isDone: false
