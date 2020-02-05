@@ -11,8 +11,9 @@ let model = {
     ratingMap: {
     questionButton: ['NEXT', 'SUBMIT'],
     ratingOptions: ['', 'angry', 'frown', 'meh', 'smile', 'laugh'],
-    questionNumber: ['Question 1/5', 'Question 2/5','Question 3/5','Question 4/5','Question 5/5' ],
+    questionNumber: ['Question 1/5', 'Question 2/5','Question 3/5','Question 4/5','Question 5/5', 'SUBMITTED'],
     questions: ['How Was Your Mood today?', 'How was your Meal?', 'Did you like these questions?', 'Feel empty?', 'Do you like milk?',],
+    formArr: ['Create New Form', 'Add Text', 'Submit', '+',],
     },
     
 };
