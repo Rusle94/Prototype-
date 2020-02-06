@@ -58,13 +58,14 @@
         //model
         let names= [
 
+
             { descripton: 'per', isDone: true, AdminUser: '', dateStarted : '16-12-1948', doneDate:'17-10-1960'},
             { descripton: 'Tysgrul', isDone: false, AdminUser: '', dateStarted  : '20-2-1342fk', doneDate:'20-2-0'},
             { descripton: 'Songly', isDone: false, AdminUser: '', dateStarted  : '31-10-9241', doneDate:'10-3-1091'},
 
         ];
 
-
+0
 
         //view
         let nameTable = document.getElementById("nameLists")
@@ -100,7 +101,7 @@
                     <button onclick="deleteUser(${i})">Remove</button>
                     <button onclick="editName(${i})">Edit</button>
                     </td>
-                    <td><input id="editcomments${i}" type="text" ${name.AdminUser}</td>
+                    <td>  ${name.AdminUser}</td>
                     
                         </td>
                         <td>${name.dateStarted}</td>
